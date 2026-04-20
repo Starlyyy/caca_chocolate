@@ -1,0 +1,131 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:linear-gradient(135deg,#3b0066,#6a0dad,#8a2be2);
+    font-family:Arial, Helvetica, sans-serif;
+    color:#f5e9ff;
+}
+
+/* Caixa principal */
+.box{
+    width:100%;
+    max-width:650px;
+    background:rgba(255,255,255,0.10);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* Logos */
+.topo{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:4px; /* deixa coladinho */
+    margin-bottom:20px;
+    flex-wrap:nowrap;
+}
+
+.coelho{
+    width:95px;
+    max-width:22vw;
+}
+
+.logo{
+    width:260px;
+    max-width:65vw;
+}
+
+/* Textos */
+h1{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+p{
+    font-size:1.1rem;
+    margin-bottom:10px;
+}
+
+#palavra{
+    font-size:2.4rem;
+    font-weight:800;
+    color:#ffd6ff;
+    margin:12px 0 18px;
+    word-break:break-word;
+}
+
+.destaque{
+    font-weight:bold;
+    color:#ffffff;
+}
+
+/* RESPONSIVO CELULAR */
+@media (max-width:768px){
+
+    .box{
+        padding:22px;
+        border-radius:20px;
+    }
+
+    h1{
+        font-size:1.55rem;
+        line-height:1.3;
+    }
+
+    p{
+        font-size:1rem;
+    }
+
+    #palavra{
+        font-size:2rem;
+    }
+
+    .coelho{
+        width:75px;
+    }
+
+    .logo{
+        width:210px;
+    }
+
+    .topo{
+        gap:2px;
+    }
+}
+
+/* TELAS GRANDES */
+@media (min-width:1200px){
+    .box{
+        max-width:760px;
+        padding:38px;
+    }
+
+    h1{
+        font-size:2.4rem;
+    }
+
+    #palavra{
+        font-size:2.8rem;
+    }
+
+    .logo{
+        width:320px;
+    }
+
+    .coelho{
+        width:110px;
+    }
+}

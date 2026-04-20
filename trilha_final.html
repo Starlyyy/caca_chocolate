@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final da trilha!</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="shortcut icon" href="icone.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="box">
+        <div class="topo d-flex col gap-1">
+            <img src="coelhinho-fofinho.png" alt="Coelhinho da pascoa fofinho" class="coelho col-3 h-25">
+            <img src="logo.png" alt="Logo da chapa Conecta" class="logo col-9 h-50">
+        </div>
+        <div class="text-center">
+            <h1>Parabéns, você chegou ao final da trilha!</h1>
+            <p class="fs-4">Sua palavra é:</p>
+            <h2 id="palavra"></h2>
+            <p><b>Guarde essa palavra</b> e retire seu prêmio no: Mini auditório!</p>
+        </div>
+    </div>
+    <script>
+        const palavras = [
+            "abacaxi", "janela", "planeta", "caderno", "girassol", "oceano", "montanha", "teclado", "chuveiro", "relampago",
+            "borboleta", "espelho", "foguete", "travesseiro", "tempestade", "farofa", "violino", "almofada", "pipoca", "camaleao",
+            "garrafa", "areia", "lanterna", "tigre", "morango", "xadrez", "chuva", "panela", "misterio", "sapato",
+            "cadeira", "helicoptero", "laranja", "cachoeira", "diamante", "escada", "algodao", "marmelada", "crocodilo", "parafuso",
+            "amendoim", "vela", "sorvete", "tornado", "radar", "joaninha", "cafe", "tesoura", "martelo", "navio",
+            "geladeira", "cobertor", "melancia", "serpente", "pintura", "castelo", "nuvem", "cenoura", "mochila", "galaxia",
+            "dinossauro", "relogio", "camiseta", "jacare", "escova", "tapete", "girafa", "microfone", "cereja", "piramide",
+            "bateria", "morcego", "tomate", "labirinto", "pizza", "girassol", "meteoro", "telefone", "sabonete", "canguru",
+            "boneca", "pirulito", "abelha", "computador", "trator", "pinguim", "almirante", "estrela", "manteiga", "flauta",
+            "folha", "anel", "bicicleta", "moinho", "coelho", "livro", "tempura", "tartaruga", "oceania", "marreta",
+            "fogueira", "parque", "esquilo", "bolacha", "martim", "notebook", "chuvisco", "tulipa", "ornitorrinco", "papel",
+            "aviador", "saxofone", "couve", "beterraba", "pastel", "escorrega", "gramado", "cascata", "quimera", "botao",
+            "avião", "feijao", "jabuticaba", "melodia", "sereia", "xadrezista", "telhado", "ponte", "camarao", "margarida",
+            "roda", "escorpiao", "violao", "peteca", "cacto", "miragem", "janota", "pepino", "cobertura", "balanco",
+            "urso", "sabedoria", "orvalho", "grilo", "camelo", "mandioca", "trilho", "pedregulho", "lancheira", "agulha",
+            "raquete", "pimenta", "rubi", "tucano", "sino", "papagaio", "foguinho", "corda", "alface", "barraca",
+            "deserto", "trigo", "moeda", "estrebaria", "sombra", "pincel", "tombo", "guitarra", "cascavel", "folclore",
+            "serrote", "ninho", "garfo", "escultura", "pudim", "jasmim", "panqueca", "castanha", "rinoceronte", "abajur",
+            "telescopio", "balde", "lousa", "coruja", "poltrona", "framboesa", "gelo", "brinquedo", "carrossel", "farol",
+            "marfim", "fivela", "caverna", "sapinho", "bolinho", "algema", "faquinha", "berinjela", "trovão", "carrinho",
+            "papoula", "jardim", "cachimbo", "gravata", "xicara", "faisca", "jacinto", "cometa", "trilho", "cerebro",
+            "camurca", "dromedario", "escotilha", "fronteira", "gengibre", "harmonia", "imenso", "jangada", "kiwi", "lamparina",
+            "mirtilo", "neblina", "origami", "papiro", "quartzo", "raposa", "safira", "tamanco", "umidade", "vagalume",
+            "whisky", "xarope", "yakisoba", "zangado", "amora", "brisa", "claridade", "doceira", "encaixe", "formigueiro",
+            "geleia", "hortela", "ilhota", "jiló", "karaoke", "limonada", "moinho", "narciso", "obsidiana", "petala",
+            "quintal", "rabanete", "samambaia", "tamanduá", "urtiga", "vitrola", "xadrez", "ziper", "azeitona", "beirada",
+            "cabide", "detetive", "embaixada", "foguista", "graveto", "heranca", "isqueiro", "jornal", "laranjeira", "mamute",
+            "nadador", "ovelha", "pandeiro", "queimada", "redemoinho", "serenata", "trampolim", "universo", "vitrine", "xadrezado",
+            "zangao", "ameixa", "bambu", "cimento", "dominó", "escadaria", "foguetao", "galocha", "hidrante", "injecao",
+            "jangal", "karate", "luminaria", "mangueira", "nublado", "ouro", "prancha", "queijo", "riscado", "semente",
+            "toalha", "utensilio", "ventania", "xadrezinho", "zunido", "amuleto", "biscoito", "carambola", "doceria", "enigma",
+            "fagulha", "gargalhada", "helice", "imagem", "jabuti", "labareda", "mamadeira", "nectar", "opereta", "pandeirola",
+            "quiosque", "rodopio", "sardinha", "tabuleiro", "ursopolar", "verdura", "xadrezista", "zepelim"
+        ];;
+        //for (let i = 1; i <= 300; i++) palavras.push('senha' + String(i).padStart(3, '0'));
+        let usadas = JSON.parse(localStorage.getItem('usadas') || '[]');
+        let disponiveis = palavras.filter(x => !usadas.includes(x));
+        let sorteada = disponiveis[Math.floor(Math.random() * disponiveis.length)] || 'ESGOTADO';
+        if (sorteada !== 'ESGOTADO') { usadas.push(sorteada); localStorage.setItem('usadas', JSON.stringify(usadas)); }
+        document.getElementById('palavra').textContent = sorteada;
+    </script>
+</body>
+
+</html>
